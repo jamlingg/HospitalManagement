@@ -34,7 +34,7 @@ public class Administrator{
 		patient.setPhone_number(in.next());
 		System.out.println("Please enter Insurance Carrier");
 		patient.setInsurance(in.next());
-		System.out.println("Please enter GOOGLE Carrier");
+		System.out.println("Please enter Amazon Carrier");
 		personList.add(patient);
 		hashMap.put(patient.getFirst_name(),personList);
 		
