@@ -17,10 +17,16 @@ public class Administrator{
 	
 	ArrayList<Patient>personList = new ArrayList<Patient>();
 	
-	HashMap <String,ArrayList<Patient>>hashMap = new HashMap <String,ArrayList<Patient>>();
+	HashMap <String,Patient> hashMap = new HashMap <String,Patient>();
 
 	Scanner in = new Scanner(System.in);
+	String name,dob,phone,insurance;
 	
+	/*@Override
+	public String toString(){
+		return name;
+		
+	}*/
 
 	public  void PatientInfo(){
 		
@@ -34,26 +40,13 @@ public class Administrator{
 		patient.setPhone_number(in.next());
 		System.out.println("Please enter Insurance Carrier");
 		patient.setInsurance(in.next());
-		System.out.println("Please enter Jamling Ghale");
 		personList.add(patient);
-		hashMap.put(patient.getFirst_name(),personList);
 		
 		
-		
-		
-		//personList.add(patient);
-		
-		/*
-		System.out.println("Please entername");
-		patient.setFirst_name(in.next());
-		System.out.println("Please enter Date of Birth");
-		patient.setdate(in.next());
-		System.out.println("Please enter Phone number");
-		patient.setPhone_number(in.next());
-		System.out.println("Please enter Insurance Carrier");
-		patient.setInsurance(in.next());
-		*/
-		
+		for (Patient newPatient : personList){
+			hashMap.put(patient.getFirst_name(),newPatient);
+		}
+
 		
 	
 	}
@@ -62,6 +55,14 @@ public class Administrator{
 	public void optionChecker(){
 		
 		int status;
+		for(int i=0;i<personList.size();i++){
+			
+			name=personList.get(i).getFirst_name();
+			dob=personList.get(i).getdate();
+			phone=personList.get(i).getPhone_number();
+			insurance=personList.get(i).getInsurance();
+		
+			}
 		
 		do {
 			System.out.println("-----------------------choose any one of the following");
@@ -86,10 +87,7 @@ public class Administrator{
 				
 				while (iterator.hasNext()){
 					String key = (String)iterator.next();
-					//String value=(String)hashMap.get(key);
-					ArrayList<Patient> value=hashMap.get(key);
-					
-					System.out.println("Key:"+key+",Value:"+value);
+					System.out.println("Key:"+key+",Value:"+hashMap.get(key).getFirst_name());
 				}
 				
 				/*
@@ -141,5 +139,8 @@ public class Administrator{
 		
 		in.close();
 	}
+	
+	
+
 	
 	}
