@@ -20,7 +20,7 @@ public class Administrator{
 	HashMap <String,Patient> hashMap = new HashMap <String,Patient>();
 
 	Scanner in = new Scanner(System.in);
-	String name,dob,phone,insurance;
+	String pat;
 	
 	/*@Override
 	public String toString(){
@@ -31,39 +31,35 @@ public class Administrator{
 	public  void PatientInfo(){
 		
 		Patient patient = new Patient();
-		
-		System.out.println("Please entername");
-		patient.setFirst_name(in.next());
-		System.out.println("Please enter Date of Birth");
-		patient.setdate(in.next());
-		System.out.println("Please enter Phone number");
-		patient.setPhone_number(in.next());
-		System.out.println("Please enter Insurance Carrier");
-		patient.setInsurance(in.next());
+		try {
+			System.out.println("Please entername");
+			patient.setFirst_name(in.next());
+			System.out.println("Please enter Date of Birth");
+			patient.setdate(in.next());
+			System.out.println("Please enter Phone number");
+			patient.setPhone_number(in.next());
+			System.out.println("Please enter Insurance Carrier");
+			patient.setInsurance(in.next());
+
+		}  catch (InputMismatchException e){
+			System.out.println(" INVALID Error!");
+			PatientInfo();
+			
+			}
 		personList.add(patient);
 		
-		
+			
 		for (Patient newPatient : personList){
-			hashMap.put(patient.getFirst_name(),newPatient);
-		}
-
+				hashMap.put(patient.getFirst_name(),newPatient);
+				}
 		
 	
-	}
+		}
 		
 		
 	public void optionChecker(){
 		
 		int status;
-		for(int i=0;i<personList.size();i++){
-			
-			name=personList.get(i).getFirst_name();
-			dob=personList.get(i).getdate();
-			phone=personList.get(i).getPhone_number();
-			insurance=personList.get(i).getInsurance();
-		
-			}
-		
 		do {
 			System.out.println("-----------------------choose any one of the following");
 			
@@ -81,35 +77,17 @@ public class Administrator{
 						
 				}
 			else if (status == 2 ){
-				System.out.print(" Name ");System.out.print(" DOB ");System.out.print(" Phone ");System.out.println(" Insurance ");
 				Set setOfKeys = hashMap.keySet();
 				Iterator iterator = setOfKeys.iterator();
 				
 				while (iterator.hasNext()){
 					String key = (String)iterator.next();
-					System.out.println("Key:"+key+",Value:"+hashMap.get(key).getFirst_name());
-				}
-				
-				/*
-				for(int i=0;i<personList.size();i++){
-					
-					System.out.print(personList.get(i).getFirst_name());System.out.print("|");
-					System.out.print(personList.get(i).getdate());System.out.print("|");
-					System.out.print(personList.get(i).getPhone_number());System.out.print("|");
-					System.out.print(personList.get(i).getInsurance());System.out.println("|");
-				
-				
-					}*/
-				
+					System.out.println("Name:"+key+",Phone:"+hashMap.get(key).getPhone_number()+",DOB: "+hashMap.get(key).getdate()+",Insurance: "+hashMap.get(key).getInsurance());
+		
+					}
 				
 				}
 			else if (status == 3){
-				
-				{
-					
-					
-					
-				}
 				
 				
 			}
