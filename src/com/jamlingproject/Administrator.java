@@ -6,11 +6,48 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
+import java.awt.Color;
 import java.util.*;
-
-public class Administrator{
+import javax.swing.*;
+public class Administrator extends JFrame{
+	
+	JFrame myFrame = new JFrame();
+    // JPanel
+    JPanel pnlButton = new JPanel();
+    // Buttons
+    JButton checkIn = new JButton("Check In");
+    JButton list = new JButton("List Of Patient");
+    JButton checkOut = new JButton("Check Out");
+    JButton feedBack = new JButton("Feed Back");
+    JButton Exit = new JButton("Exit");
+    
+	
 	
 	public Administrator() {
+		
+		
+		   // FlightInfo setbounds
+		checkIn.setBounds(60, 400, 220, 30);
+
+        // JPanel bounds
+      
+        pnlButton.setBounds(0, 500, 100, 100);
+        // Adding to JFrame
+        pnlButton.add(checkIn);
+        pnlButton.add(list);
+        pnlButton.add(checkOut);
+        pnlButton.add(feedBack);
+        pnlButton.add(Exit);
+        add(pnlButton);
+
+        // JFrame properties
+        setSize(400, 200);
+        setBackground(Color.BLACK);
+        setTitle("Hospital Management System");
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //pnlButton.setLayout(null);
+        setVisible(true);
 	
 	
 	}
@@ -32,6 +69,8 @@ public class Administrator{
 		
 		Patient patient = new Patient();
 		try {
+			JFrame frame = new JFrame ("Hospital Management System");
+			
 			System.out.println("Please entername");
 			patient.setFirst_name(in.next());
 			System.out.println("Please enter Date of Birth");
