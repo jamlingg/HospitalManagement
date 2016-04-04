@@ -1,6 +1,7 @@
 package com.jamlingproject;
 
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -21,7 +22,7 @@ public class Main {
 		
 		JFrame myframe = new JFrame();
 	    // JPanel
-	    JPanel pnlButton = new JPanel();
+	    JPanel pnlButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
 	    // Buttons
 	    JButton checkIn = new JButton("Check In");
 	    checkIn.addActionListener(new ActionListener(){
@@ -59,7 +60,8 @@ public class Main {
         myframe.setLocationRelativeTo(null);
         myframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //pnlButton.setLayout(null);
-        myframe.setVisible(true);	
+        myframe.setVisible(true);
+        myframe.pack();
 		//JFrame myFrame = new JFrame("This is my frame");
 
 		//myFrame.setSize(300,400);

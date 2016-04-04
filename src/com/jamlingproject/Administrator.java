@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.util.*;
 
@@ -39,18 +41,61 @@ public class Administrator extends JFrame{
 
 	public  void PatientInfo(){
 		
-		Patient patient = new Patient();
-			JPanel form = new JPanel();
+		
+			JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			JLabel fname = new JLabel("First Name");
+			JLabel dob = new JLabel("Date Of Birth");
+			JLabel pn = new JLabel("Phone Number");
+			JLabel insurance = new JLabel("Insurance Carrier");
+			final JTextField FirstName = new JTextField(20);
+			final JTextField dateOfBirth = new JTextField(20);
+			final JTextField phoneNumber = new JTextField(10);
+			final JTextField insuranceCarrier = new JTextField(15);
+			JButton save = new JButton("Save");
+			
+			add(panel);
+			panel.add(fname);
+			FirstName.setFont(FirstName.getFont().deriveFont(15f));
+			panel.add(FirstName);//
+			panel.add(dob);
+			dateOfBirth.setFont(dateOfBirth.getFont().deriveFont(15f));
+			panel.add(dateOfBirth);//
+			panel.add(pn);
+			phoneNumber.setFont(phoneNumber.getFont().deriveFont(15f));
+			panel.add(phoneNumber);//
+			panel.add(insurance);
+			insuranceCarrier.setFont(insuranceCarrier.getFont().deriveFont(15f));
+			panel.add(insuranceCarrier);//
+			panel.add(Box.createRigidArea(new Dimension(100,0)));
+			panel.add(save);
 			
 			
-			
-			setSize(400, 200);
+			setSize(800, 200);
 	        setBackground(Color.BLACK);
 	        setTitle("Patient Form");
 	        setLocationRelativeTo(null);
 	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	        //pnlButton.setLayout(null);
+	        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
+	        pack();
 	        setVisible(true);
+	        
+	        save.addActionListener(new ActionListener(){
+		        public void actionPerformed(ActionEvent e)
+		        {
+		        	//Patient patient = new Patient();
+		            String patientName = FirstName.getText();
+		            //String patientLName = LastName.getText();
+		            String date = dateOfBirth.getText();
+		            String phone = phoneNumber.getText();
+		            String carrier = insuranceCarrier.getText();
+		            for (Patient newPatient : personList){
+						hashMap.put(patientName,newPatient);
+						}
+		            
+		            
+		            
+		        }
+		    	});
 	        
 	   /*try{
 		
@@ -69,11 +114,12 @@ public class Administrator extends JFrame{
 			
 			}
 		personList.add(patient);
-		*/
+		
 			
 		for (Patient newPatient : personList){
 				hashMap.put(patient.getFirst_name(),newPatient);
 				}
+		*/
 		
 	
 		}
