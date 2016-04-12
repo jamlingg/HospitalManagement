@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 public class Administrator extends JFrame{
 	
 
@@ -41,7 +43,8 @@ public class Administrator extends JFrame{
 
 	public  void PatientInfo(){
 		
-		
+			final Patient patient = new Patient();
+			
 			JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel fname = new JLabel("First Name");
 			JLabel dob = new JLabel("Date Of Birth");
@@ -82,15 +85,40 @@ public class Administrator extends JFrame{
 	        save.addActionListener(new ActionListener(){
 		        public void actionPerformed(ActionEvent e)
 		        {
-		        	//Patient patient = new Patient();
 		            String patientName = FirstName.getText();
-		            //String patientLName = LastName.getText();
+		            
 		            String date = dateOfBirth.getText();
 		            String phone = phoneNumber.getText();
 		            String carrier = insuranceCarrier.getText();
+		            patient.setFirst_name(patientName);
+		            patient.setdate(date);
+		            patient.setPhone_number(phone);
+		            patient.setInsurance(carrier);
+		          
+		            personList.add(patient);
 		            for (Patient newPatient : personList){
 						hashMap.put(patientName,newPatient);
 						}
+		            
+		            
+		            Set setOfKeys = hashMap.keySet();
+					Iterator iterator = setOfKeys.iterator();
+					
+					while (iterator.hasNext()){
+						String key = (String)iterator.next();
+						//System.out.println("Name:"+key+",Phone:"+hashMap.get(key).getPhone_number()+",DOB: "+hashMap.get(key).getdate()+",Insurance: "+hashMap.get(key).getInsurance());
+			
+						}
+					JTable t = new JTable(toTableModel(hashMap));
+		            JPanel myPanel = new JPanel();
+		            myPanel.add(t);
+		            JFrame f=new JFrame();
+		            f.add(myPanel);
+		            f.setSize(200,200);
+		            f.setVisible(true);
+		            
+					//Confirmation confirmation = new Confirmation();
+		            //confirmation.getConfirmation(patientName,date,phone,carrier);
 		            
 		            
 		            
@@ -124,7 +152,21 @@ public class Administrator extends JFrame{
 	
 		}
 		
+	public static TableModel toTableModel (Map<String,Patient>map){
+		DefaultTableModel model = new DefaultTableModel(new Object[]{"Key","Value","Value","Value"},0);
+		for (Map.Entry<String, Patient>entry : map.entrySet()){
+			model.addRow(new Object[]{
+					entry.getKey(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance()
+					} );
+			return model;
+			
+		}
 		
+		return model;
+		
+		
+		 
+	}	
 	public void optionChecker(){
 		
 		int status;
@@ -150,7 +192,7 @@ public class Administrator extends JFrame{
 				
 				while (iterator.hasNext()){
 					String key = (String)iterator.next();
-					System.out.println("Name:"+key+",Phone:"+hashMap.get(key).getPhone_number()+",DOB: "+hashMap.get(key).getdate()+",Insurance: "+hashMap.get(key).getInsurance());
+					//System.out.println("Name:"+key+",Phone:"+hashMap.get(key).getPhone_number()+",DOB: "+hashMap.get(key).getdate()+",Insurance: "+hashMap.get(key).getInsurance());
 		
 					}
 				
