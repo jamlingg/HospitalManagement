@@ -15,6 +15,7 @@ import java.util.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableModel;
 public class Administrator extends JFrame{
 	
@@ -77,7 +78,7 @@ public class Administrator extends JFrame{
 	        setBackground(Color.BLACK);
 	        setTitle("Patient Form");
 	        setLocationRelativeTo(null);
-	        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 	        pack();
 	        setVisible(true);
@@ -101,20 +102,26 @@ public class Administrator extends JFrame{
 						}
 		            
 		            
-		            Set setOfKeys = hashMap.keySet();
-					Iterator iterator = setOfKeys.iterator();
+//		            Set setOfKeys = hashMap.keySet();
+//					Iterator iterator = setOfKeys.iterator();
+//					
+//					while (iterator.hasNext()){
+//						String key = (String)iterator.next();
+//						//System.out.println("Name:"+key+",Phone:"+hashMap.get(key).getPhone_number()+",DOB: "+hashMap.get(key).getdate()+",Insurance: "+hashMap.get(key).getInsurance());
+//			
+//						}
 					
-					while (iterator.hasNext()){
-						String key = (String)iterator.next();
-						//System.out.println("Name:"+key+",Phone:"+hashMap.get(key).getPhone_number()+",DOB: "+hashMap.get(key).getdate()+",Insurance: "+hashMap.get(key).getInsurance());
-			
-						}
 					JTable t = new JTable(toTableModel(hashMap));
 		            JPanel myPanel = new JPanel();
+		            myPanel.add(new JScrollPane(t));
 		            myPanel.add(t);
-		            JFrame f=new JFrame();
+		            JFrame f=new JFrame("Confirmation");
 		            f.add(myPanel);
-		            f.setSize(200,200);
+		          
+		            
+		            //f.setSize(400,400);
+		            f.pack();
+		           // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		            f.setVisible(true);
 		            
 					//Confirmation confirmation = new Confirmation();
