@@ -81,11 +81,13 @@ public class Administrator extends JFrame{
 	        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 	        pack();
+	        //dispose();
 	        setVisible(true);
 	        
 	        save.addActionListener(new ActionListener(){
 		        public void actionPerformed(ActionEvent e)
 		        {
+		        	
 		            String patientName = FirstName.getText();
 		            
 		            String date = dateOfBirth.getText();
@@ -110,16 +112,26 @@ public class Administrator extends JFrame{
 //						//System.out.println("Name:"+key+",Phone:"+hashMap.get(key).getPhone_number()+",DOB: "+hashMap.get(key).getdate()+",Insurance: "+hashMap.get(key).getInsurance());
 //			
 //						}
-					
+		            final JFrame f=new JFrame("Confirmation");
+		            JButton confirm = new JButton("Confirm");
 					JTable t = new JTable(toTableModel(hashMap));
 		            JPanel myPanel = new JPanel();
 		            myPanel.add(new JScrollPane(t));
+		            myPanel.add(confirm);
 		            myPanel.add(t);
-		            JFrame f=new JFrame("Confirmation");
+		            confirm.addActionListener(new ActionListener(){
+		            	public void actionPerformed(ActionEvent e){
+		            		
+		            		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		            		dispose();
+		            		f.dispose();
+		            		
+		            	}
+		            	
+		            	
+		            	
+		            });
 		            f.add(myPanel);
-		          
-		            
-		            //f.setSize(400,400);
 		            f.pack();
 		           // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		            f.setVisible(true);
