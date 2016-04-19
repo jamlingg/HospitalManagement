@@ -33,6 +33,14 @@ public class Main {
 	    	});
 	    
 	    JButton list = new JButton("List Of Patient");
+	    list.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+	    	
+	    });
 	    JButton checkOut = new JButton("Check Out");
 	    JButton feedBack = new JButton("Feed Back");
 	    JButton Exit = new JButton("Exit");
@@ -56,7 +64,7 @@ public class Main {
         // JFrame properties
         myframe.setSize(400, 200);
         myframe.setBackground(Color.BLACK);
-        myframe.setTitle("Hospital Management System Jamling");
+        myframe.setTitle("Hospital Management System");
         myframe.setLocationRelativeTo(null);
         myframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //pnlButton.setLayout(null);

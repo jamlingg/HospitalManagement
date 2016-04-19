@@ -2,12 +2,16 @@ package com.jamlingproject;
 
 import java.util.ArrayList;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Scanner;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -16,6 +20,7 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 public class Administrator extends JFrame{
 	
@@ -45,7 +50,7 @@ public class Administrator extends JFrame{
 	public  void PatientInfo(){
 		
 			final Patient patient = new Patient();
-			
+			final List<JTextField> tfList= new ArrayList<JTextField>();
 			JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel fname = new JLabel("First Name");
 			JLabel dob = new JLabel("Date Of Birth");
@@ -72,7 +77,10 @@ public class Administrator extends JFrame{
 			panel.add(insuranceCarrier);//
 			panel.add(Box.createRigidArea(new Dimension(100,0)));
 			panel.add(save);
-			
+			tfList.add(FirstName);
+			tfList.add(dateOfBirth);
+			tfList.add(phoneNumber);
+			tfList.add(insuranceCarrier);
 			
 			setSize(800, 200);
 	        setBackground(Color.BLACK);
@@ -89,7 +97,6 @@ public class Administrator extends JFrame{
 		        {
 		        	
 		            String patientName = FirstName.getText();
-		            
 		            String date = dateOfBirth.getText();
 		            String phone = phoneNumber.getText();
 		            String carrier = insuranceCarrier.getText();
@@ -114,17 +121,21 @@ public class Administrator extends JFrame{
 //						}
 		            final JFrame f=new JFrame("Confirmation");
 		            JButton confirm = new JButton("Confirm");
-					JTable t = new JTable(toTableModel(hashMap));
+		            JTable t = new JTable(toTableModel(hashMap));
 		            JPanel myPanel = new JPanel();
 		            myPanel.add(new JScrollPane(t));
 		            myPanel.add(confirm);
-		            myPanel.add(t);
 		            confirm.addActionListener(new ActionListener(){
 		            	public void actionPerformed(ActionEvent e){
 		            		
 		            		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		            		dispose();
 		            		f.dispose();
+		            		for (JTextField tf : tfList){
+		            			tf.setText("");
+		            			patient.getcheckin(patient.getFirst_name());
+		            		}
+		            		
 		            		
 		            	}
 		            	
@@ -133,7 +144,6 @@ public class Administrator extends JFrame{
 		            });
 		            f.add(myPanel);
 		            f.pack();
-		           // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		            f.setVisible(true);
 		            
 					//Confirmation confirmation = new Confirmation();
@@ -172,7 +182,9 @@ public class Administrator extends JFrame{
 		}
 		
 	public static TableModel toTableModel (Map<String,Patient>map){
-		DefaultTableModel model = new DefaultTableModel(new Object[]{"Key","Value","Value","Value"},0);
+		
+
+		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance"},0);
 		for (Map.Entry<String, Patient>entry : map.entrySet()){
 			model.addRow(new Object[]{
 					entry.getKey(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance()

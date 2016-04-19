@@ -3,6 +3,11 @@ package com.jamlingproject;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 public class Patient {
 	public String first_name,date, phone_number, insurance;
 
@@ -54,9 +59,17 @@ public class Patient {
 	
 	
 	
-	public void getcheckin(String first_name){
+	public void getcheckin(String firstName){
 		
-		System.out.println(first_name+" has been Checked in");
+		JFrame frame = new JFrame();
+		JOptionPane optionPane= new JOptionPane(firstName+" has checked in ");
+		JDialog dialog=optionPane.createDialog(frame," ");
+		dialog.setVisible(true);
+		dialog.dispose();
+		//dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		
+		//System.out.println(first_name+" has been Checked in");
 		
 		
 		
