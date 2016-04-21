@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class Patient {
-	public String first_name,date, phone_number, insurance;
+	public String first_name,date, phone_number, insurance,type;
 
 	
 //\	ArrayList<Patient>personList = new ArrayList<Patient>();
@@ -57,6 +57,15 @@ public class Patient {
 		this.insurance = insurance;
 	}
 	
+	public String getPatientType() {
+		return type;
+	}
+
+
+	public void setPatientType(String type) {
+		this.type = type;
+	}
+	
 	
 	
 	public void getcheckin(String firstName){
@@ -66,6 +75,7 @@ public class Patient {
 		JDialog dialog=optionPane.createDialog(frame," ");
 		dialog.setVisible(true);
 		dialog.dispose();
+		
 		//dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		

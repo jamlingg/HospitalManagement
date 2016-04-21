@@ -48,7 +48,7 @@ public class Administrator extends JFrame{
 	}*/
 
 	public  void PatientInfo(){
-		
+			String[] options={"INPATIENT","OUTPATIENT"};
 			final Patient patient = new Patient();
 			final List<JTextField> tfList= new ArrayList<JTextField>();
 			JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -56,10 +56,13 @@ public class Administrator extends JFrame{
 			JLabel dob = new JLabel("Date Of Birth");
 			JLabel pn = new JLabel("Phone Number");
 			JLabel insurance = new JLabel("Insurance Carrier");
+			JLabel type = new JLabel("Patient Type");
 			final JTextField FirstName = new JTextField(20);
 			final JTextField dateOfBirth = new JTextField(20);
 			final JTextField phoneNumber = new JTextField(10);
 			final JTextField insuranceCarrier = new JTextField(15);
+			final JComboBox patientType=new JComboBox(options);
+			
 			JButton save = new JButton("Save");
 			
 			add(panel);
@@ -75,6 +78,9 @@ public class Administrator extends JFrame{
 			panel.add(insurance);
 			insuranceCarrier.setFont(insuranceCarrier.getFont().deriveFont(15f));
 			panel.add(insuranceCarrier);//
+			panel.add(type);
+			panel.add(patientType);
+			
 			panel.add(Box.createRigidArea(new Dimension(100,0)));
 			panel.add(save);
 			tfList.add(FirstName);
@@ -100,10 +106,12 @@ public class Administrator extends JFrame{
 		            String date = dateOfBirth.getText();
 		            String phone = phoneNumber.getText();
 		            String carrier = insuranceCarrier.getText();
+		            String ptype = (String) patientType.getSelectedItem();
 		            patient.setFirst_name(patientName);
 		            patient.setdate(date);
 		            patient.setPhone_number(phone);
 		            patient.setInsurance(carrier);
+		            patient.setPatientType(ptype);
 		          
 		            personList.add(patient);
 		            for (Patient newPatient : personList){
@@ -133,10 +141,9 @@ public class Administrator extends JFrame{
 		            		f.dispose();
 		            		for (JTextField tf : tfList){
 		            			tf.setText("");
-		            			patient.getcheckin(patient.getFirst_name());
-		            		}
-		            		
-		            		
+		            			}
+		            		patient.getcheckin(patient.getFirst_name());
+		            		 		
 		            	}
 		            	
 		            	
@@ -184,10 +191,10 @@ public class Administrator extends JFrame{
 	public static TableModel toTableModel (Map<String,Patient>map){
 		
 
-		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance"},0);
+		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type"},0);
 		for (Map.Entry<String, Patient>entry : map.entrySet()){
 			model.addRow(new Object[]{
-					entry.getKey(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance()
+					entry.getKey(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance(),entry.getValue().getPatientType()
 					} );
 			return model;
 			
