@@ -13,14 +13,19 @@ import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class Main {
+
 
 	public static void main(String[] args) {
 		
 		final Administrator admin = new Administrator();
+		final PatientList patientList = new PatientList();
 		
 		JFrame myframe = new JFrame();
+		
 	    // JPanel
 	    JPanel pnlButton = new JPanel(new FlowLayout(FlowLayout.LEFT));
 	    // Buttons
@@ -36,7 +41,15 @@ public class Main {
 	    list.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
+				JFrame f=new JFrame("Patient List");
+				JPanel panel = new JPanel();
+				JTable t = new JTable(PatientList.toTableModel(admin.hashMap));
+				panel.add(new JScrollPane(t));
+				f.add(panel);
+		        f.pack();
+		        f.setVisible(true);
 				
+			
 				
 			}
 	    	

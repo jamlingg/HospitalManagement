@@ -48,11 +48,16 @@ public class Administrator extends JFrame{
 		return name;
 		
 	}*/
+	
+	Patient patient = new Patient();
+	List<JTextField> tfList= new ArrayList<JTextField>();
+	String[] options={"INPATIENT","OUTPATIENT"};
+	JLabel type = new JLabel("Patient Type");
 
 	public  void PatientInfo(){
-			String[] options={"INPATIENT","OUTPATIENT"};
-			final Patient patient = new Patient();
-			final List<JTextField> tfList= new ArrayList<JTextField>();
+			
+			//final Patient patient = new Patient();
+			//final List<JTextField> tfList= new ArrayList<JTextField>();
 			JPanel panel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			JLabel fname = new JLabel("First Name");
 			JLabel dob = new JLabel("Date Of Birth");
@@ -97,7 +102,7 @@ public class Administrator extends JFrame{
 	        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	        panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
 	        pack();
-	        //dispose();
+	        ///dispose();
 	        setVisible(true);
 	       // final int bed = 200;
 	        save.addActionListener(new ActionListener(){
@@ -125,7 +130,7 @@ public class Administrator extends JFrame{
 						hashMap.put(patientName,newPatient);
 						}
 		            
-		            
+		           // System.out.println(hashMap);
 //		            Set setOfKeys = hashMap.keySet();
 //					Iterator iterator = setOfKeys.iterator();
 //					
@@ -144,24 +149,25 @@ public class Administrator extends JFrame{
 		            	public void actionPerformed(ActionEvent e){
 		            		
 		            		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		            		dispose();
-		            		f.dispose();
+		            		
 		            		for (JTextField tf : tfList){
 		            			tf.setText("");
-		            			}
+		            			
+		            		}
 		            		patient.getcheckin(patient.getFirst_name());
-		            		 		
+		            		dispose();
+		            		f.dispose();
+		            		
+		  		
 		            	}
 		            	
-		            	
-		            	
+		      
 		            });
+		            
 		            f.add(myPanel);
 		            f.pack();
 		            f.setVisible(true);
 		            
-					//Confirmation confirmation = new Confirmation();
-		            //confirmation.getConfirmation(patientName,date,phone,carrier);
 		            
 		            
 		            
@@ -198,14 +204,12 @@ public class Administrator extends JFrame{
 		
 	public static TableModel toTableModel (Map<String,Patient>map){
 		
-
 		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type","BED"},0);
 		for (Map.Entry<String, Patient>entry : map.entrySet()){
 			model.addRow(new Object[]{
 					entry.getValue().getFirst_name(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance(),entry.getValue().getPatientType(),entry.getValue().getAssignedBed()
-					} );
-			return model;
-			
+					});
+				
 		}
 		
 		return model;
