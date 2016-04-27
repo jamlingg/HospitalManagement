@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 
 public class Patient {
 	public String first_name,date, phone_number, insurance,type;
+	public int bed;
+	
 
 	
 //\	ArrayList<Patient>personList = new ArrayList<Patient>();
@@ -66,8 +68,16 @@ public class Patient {
 		this.type = type;
 	}
 	
+	public  void setAssignBed(int bed){
 	
-	
+		this.bed = bed;
+	}
+	public int getAssignedBed(){
+		//bed +=1;
+		return bed;
+		
+		
+	}
 	public void getcheckin(String firstName){
 		
 		JFrame frame = new JFrame();
@@ -81,10 +91,10 @@ public class Patient {
 		
 		//System.out.println(first_name+" has been Checked in");
 		
-		
-		
-		
-	}
+}
+
+	
+	
 	public void checkout(String first_name){
 		
 		System.out.println(first_name+"Checked out");

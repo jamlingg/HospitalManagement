@@ -40,6 +40,8 @@ public class Administrator extends JFrame{
 
 	Scanner in = new Scanner(System.in);
 	String pat;
+	int bed = 200;
+	
 	
 	/*@Override
 	public String toString(){
@@ -97,7 +99,7 @@ public class Administrator extends JFrame{
 	        pack();
 	        //dispose();
 	        setVisible(true);
-	        
+	       // final int bed = 200;
 	        save.addActionListener(new ActionListener(){
 		        public void actionPerformed(ActionEvent e)
 		        {
@@ -112,7 +114,12 @@ public class Administrator extends JFrame{
 		            patient.setPhone_number(phone);
 		            patient.setInsurance(carrier);
 		            patient.setPatientType(ptype);
-		          
+		            if (ptype =="INPATIENT"){
+		            	
+		            	System.out.println("Bed No."+bed+" is assigned to "+patientName);
+		            	patient.setAssignBed(bed);
+		            	bed++;
+		            }
 		            personList.add(patient);
 		            for (Patient newPatient : personList){
 						hashMap.put(patientName,newPatient);
@@ -187,14 +194,15 @@ public class Administrator extends JFrame{
 		
 	
 		}
+
 		
 	public static TableModel toTableModel (Map<String,Patient>map){
 		
 
-		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type"},0);
+		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type","BED"},0);
 		for (Map.Entry<String, Patient>entry : map.entrySet()){
 			model.addRow(new Object[]{
-					entry.getKey(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance(),entry.getValue().getPatientType()
+					entry.getValue().getFirst_name(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance(),entry.getValue().getPatientType(),entry.getValue().getAssignedBed()
 					} );
 			return model;
 			
@@ -205,6 +213,7 @@ public class Administrator extends JFrame{
 		
 		 
 	}	
+
 	public void optionChecker(){
 		
 		int status;
