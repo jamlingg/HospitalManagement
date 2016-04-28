@@ -49,9 +49,9 @@ public class Administrator extends JFrame{
 		
 	}*/
 	
-	Patient patient = new Patient();
+	static Patient patient = new Patient();
 	List<JTextField> tfList= new ArrayList<JTextField>();
-	String[] options={"INPATIENT","OUTPATIENT"};
+	String[] options={" ","INPATIENT","OUTPATIENT"};
 	JLabel type = new JLabel("Patient Type");
 
 	public  void PatientInfo(){
@@ -141,9 +141,16 @@ public class Administrator extends JFrame{
 //						}
 		            final JFrame f=new JFrame("Confirmation");
 		            JButton confirm = new JButton("Confirm");
-		            JTable t = new JTable(toTableModel(hashMap));
+		            JTable IPT = new JTable(InpatientTable(hashMap));
+		            JTable OPT = new JTable(OutpatientTable(hashMap));
 		            JPanel myPanel = new JPanel();
-		            myPanel.add(new JScrollPane(t));
+		            if (ptype =="INPATIENT"){
+		            	myPanel.add(new JScrollPane(IPT));
+		            }
+		            else{
+		            	myPanel.add(new JScrollPane(OPT));
+		            }
+		      
 		            myPanel.add(confirm);
 		            confirm.addActionListener(new ActionListener(){
 		            	public void actionPerformed(ActionEvent e){
@@ -202,15 +209,26 @@ public class Administrator extends JFrame{
 		}
 
 		
-	public static TableModel toTableModel (Map<String,Patient>map){
+	public static TableModel InpatientTable (Map<String,Patient>map){
 		
 		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type","BED"},0);
-		for (Map.Entry<String, Patient>entry : map.entrySet()){
-			model.addRow(new Object[]{
-					entry.getValue().getFirst_name(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance(),entry.getValue().getPatientType(),entry.getValue().getAssignedBed()
-					});
+		
+			model.addRow(new Object[]{patient.getFirst_name(),patient.getdate(),patient.getPhone_number(),patient.getInsurance(),patient.getPatientType(),patient.getAssignedBed()});
 				
-		}
+		
+		return model;
+		
+		
+		 
+	}
+	public static TableModel OutpatientTable (Map<String,Patient>map){
+		
+		
+		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type"},0);
+		
+			model.addRow(new Object[]{patient.getFirst_name(),patient.getdate(),patient.getPhone_number(),patient.getInsurance(),patient.getPatientType()});
+				
+				
 		
 		return model;
 		

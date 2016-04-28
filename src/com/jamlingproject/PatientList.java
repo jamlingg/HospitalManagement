@@ -27,12 +27,12 @@ public static TableModel toTableModel (Map<String,Patient>map){
 		Administrator admin = new Administrator();
 		////System.out.println("Well Hello there");
 
-		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type"},0);
+		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type","BED"},0);
 		for (Map.Entry<String, Patient>entry : map.entrySet()){
 			model.addRow(new Object[]{
 					entry.getKey(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance(),entry.getValue().getPatientType()
 					} );
-			System.out.println(entry.getValue().getFirst_name());
+			System.out.println(entry.getValue());
 			return model;
 			//System.out.println("Well Hello there");
 		}
