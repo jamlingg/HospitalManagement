@@ -141,8 +141,8 @@ public class Administrator extends JFrame{
 //						}
 		            final JFrame f=new JFrame("Confirmation");
 		            JButton confirm = new JButton("Confirm");
-		            JTable IPT = new JTable(InpatientTable(hashMap));
-		            JTable OPT = new JTable(OutpatientTable(hashMap));
+		            JTable IPT = new JTable(InpatientTable());
+		            JTable OPT = new JTable(OutpatientTable());
 		            JPanel myPanel = new JPanel();
 		            if (ptype =="INPATIENT"){
 		            	myPanel.add(new JScrollPane(IPT));
@@ -209,7 +209,7 @@ public class Administrator extends JFrame{
 		}
 
 		
-	public static TableModel InpatientTable (Map<String,Patient>map){
+	public static TableModel InpatientTable (){
 		
 		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type","BED"},0);
 		
@@ -221,7 +221,7 @@ public class Administrator extends JFrame{
 		
 		 
 	}
-	public static TableModel OutpatientTable (Map<String,Patient>map){
+	public static TableModel OutpatientTable (){
 		
 		
 		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type"},0);
