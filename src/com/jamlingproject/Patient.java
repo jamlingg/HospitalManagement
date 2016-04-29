@@ -73,7 +73,6 @@ public class Patient {
 		this.bed = bed;
 	}
 	public int getAssignedBed(){
-		//bed +=1;
 		return bed;
 		
 		
@@ -85,11 +84,6 @@ public class Patient {
 		JDialog dialog=optionPane.createDialog(frame," ");
 		dialog.setVisible(true);
 		dialog.dispose();
-		
-		//dialog.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		
-		
-		//System.out.println(first_name+" has been Checked in");
 		
 }
 
