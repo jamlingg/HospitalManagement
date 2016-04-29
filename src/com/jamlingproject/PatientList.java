@@ -29,11 +29,18 @@ public static TableModel toTableModel (Map<String,Patient>map){
 
 		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type","BED"},0);
 		for (Map.Entry<String, Patient>entry : map.entrySet()){
-			model.addRow(new Object[]{
-					entry.getKey(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance(),entry.getValue().getPatientType()
-					} );
+			if (entry.getValue().getPatientType() == "INPATIENT"){
+				model.addRow(new Object[]{
+						entry.getKey(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance(),entry.getValue().getPatientType(),entry.getValue().getAssignedBed()						} );
+				}
+			else if (entry.getValue().getPatientType() == "OUTPATIENT"){
+				model.addRow(new Object[]{
+						entry.getKey(),entry.getValue().getdate(),entry.getValue().getPhone_number(),entry.getValue().getInsurance(),entry.getValue().getPatientType(),entry.getValue().getPatientType()
+						} );
+				
+			}
 			System.out.println(entry.getValue());
-			return model;
+			//return model;
 			//System.out.println("Well Hello there");
 		}
 		
