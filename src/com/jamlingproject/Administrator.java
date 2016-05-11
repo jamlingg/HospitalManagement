@@ -125,10 +125,10 @@ public class Administrator extends JFrame{
 		            	patient.setAssignBed(bed);
 		            	bed++;
 		            }
-		            personList.add(patient);
-		            for (Patient newPatient : personList){
-						hashMap.put(patientName,newPatient);
-						}
+		           // personList.add(patient);
+		            //for (Patient newPatient : personList){
+						hashMap.put(patient.getFirst_name(),patient);
+						//}
 		            
 		           // System.out.println(hashMap);
 //		            Set setOfKeys = hashMap.keySet();
