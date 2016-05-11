@@ -139,7 +139,7 @@ public class Administrator extends JFrame{
 //						//System.out.println("Name:"+key+",Phone:"+hashMap.get(key).getPhone_number()+",DOB: "+hashMap.get(key).getdate()+",Insurance: "+hashMap.get(key).getInsurance());
 //			
 //						}
-		            final JFrame f=new JFrame("Confirmation");
+		            final JFrame f=new JFrame("ConfirmationDaju");
 		            JButton confirm = new JButton("Confirm");
 		            JTable IPT = new JTable(InpatientTable());
 		            JTable OPT = new JTable(OutpatientTable());
