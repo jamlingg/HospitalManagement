@@ -31,7 +31,7 @@ public class Main {
 	    // Buttons
 	    JButton checkIn = new JButton("Check In");
 	    checkIn.addActionListener(new ActionListener(){
-	        public void actionPerformed(ActionEvent e)
+	    	public void actionPerformed(ActionEvent e)
 	        {
 	            admin.PatientInfo();
 	        }

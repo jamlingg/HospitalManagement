@@ -37,7 +37,7 @@ public class Administrator extends JFrame{
 	ArrayList<Patient>personList = new ArrayList<Patient>();
 	
 	HashMap <String,Patient> hashMap = new HashMap <String,Patient>();
-
+	Patient patient = new Patient();
 	Scanner in = new Scanner(System.in);
 	String pat;
 	int bed = 200;
@@ -49,7 +49,7 @@ public class Administrator extends JFrame{
 		
 	}*/
 	
-	static Patient patient = new Patient();
+    
 	List<JTextField> tfList= new ArrayList<JTextField>();
 	String[] options={" ","INPATIENT","OUTPATIENT"};
 	JLabel type = new JLabel("Patient Type");
@@ -108,12 +108,17 @@ public class Administrator extends JFrame{
 	        save.addActionListener(new ActionListener(){
 		        public void actionPerformed(ActionEvent e)
 		        {
-		        	
+		        	Patient patient1 = new Patient();
 		            String patientName = FirstName.getText();
 		            String date = dateOfBirth.getText();
 		            String phone = phoneNumber.getText();
 		            String carrier = insuranceCarrier.getText();
 		            String ptype = (String) patientType.getSelectedItem();
+		            patient1.setFirst_name(patientName);
+		            patient1.setdate(date);
+		            patient1.setPhone_number(phone);
+		            patient1.setInsurance(carrier);
+		            patient1.setPatientType(ptype);
 		            patient.setFirst_name(patientName);
 		            patient.setdate(date);
 		            patient.setPhone_number(phone);
@@ -122,24 +127,13 @@ public class Administrator extends JFrame{
 		            if (ptype =="INPATIENT"){
 		            	
 		            	System.out.println("Bed No."+bed+" is assigned to "+patientName);
+		            	patient1.setAssignBed(bed);
 		            	patient.setAssignBed(bed);
 		            	bed++;
 		            }
-		           // personList.add(patient);
-		            //for (Patient newPatient : personList){
-						hashMap.put(patient.getFirst_name(),patient);
-						//}
-		            
-		           // System.out.println(hashMap);
-//		            Set setOfKeys = hashMap.keySet();
-//					Iterator iterator = setOfKeys.iterator();
-//					
-//					while (iterator.hasNext()){
-//						String key = (String)iterator.next();
-//						//System.out.println("Name:"+key+",Phone:"+hashMap.get(key).getPhone_number()+",DOB: "+hashMap.get(key).getdate()+",Insurance: "+hashMap.get(key).getInsurance());
-//			
-//						}
-		            final JFrame f=new JFrame("ConfirmationDaju");
+					hashMap.put(patient1.getFirst_name(),patient1);
+					
+		            final JFrame f=new JFrame("Confirmation");
 		            JButton confirm = new JButton("Confirm");
 		            JTable IPT = new JTable(InpatientTable());
 		            JTable OPT = new JTable(OutpatientTable());
@@ -155,13 +149,12 @@ public class Administrator extends JFrame{
 		            confirm.addActionListener(new ActionListener(){
 		            	public void actionPerformed(ActionEvent e){
 		            		
-		            		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		            		
 		            		for (JTextField tf : tfList){
 		            			tf.setText("");
 		            			
 		            		}
-		            		patient.getcheckin(patient.getFirst_name());
+		            		//patient.getcheckin(patient.getFirst_name());
 		            		dispose();
 		            		f.dispose();
 		            		
@@ -180,36 +173,13 @@ public class Administrator extends JFrame{
 		            
 		        }
 		    	});
-	        
-	   /*try{
-		
-			System.out.println("Please entername");
-			patient.setFirst_name(in.next());
-			System.out.println("Please enter Date of Birth");
-			patient.setdate(in.next());
-			System.out.println("Please enter Phone number");
-			patient.setPhone_number(in.next());
-			System.out.println("Please enter Insurance Carrier");
-			patient.setInsurance(in.next());
-
-		}  catch (InputMismatchException e){
-			System.out.println(" INVALID Error!");
-			PatientInfo();
-			
-			}
-		personList.add(patient);
-		
-			
-		for (Patient newPatient : personList){
-				hashMap.put(patient.getFirst_name(),newPatient);
-				}
-		*/
 		
 	
 		}
 
 		
-	public static TableModel InpatientTable (){
+	public TableModel InpatientTable (){
+		Administrator admin = new Administrator();
 		
 		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type","BED"},0);
 		
@@ -221,8 +191,8 @@ public class Administrator extends JFrame{
 		
 		 
 	}
-	public static TableModel OutpatientTable (){
-		
+	public  TableModel OutpatientTable (){
+		//Patient patient = new Patient();
 		
 		DefaultTableModel model = new DefaultTableModel(new Object[]{"Name","Date Of Birth","Phone Number","Insurance","Patient Type"},0);
 		

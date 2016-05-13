@@ -12,11 +12,6 @@ public class Patient {
 	public String first_name,date, phone_number, insurance,type;
 	public int bed;
 	
-
-	
-//\	ArrayList<Patient>personList = new ArrayList<Patient>();
-	
-	
 	
 	
 	
